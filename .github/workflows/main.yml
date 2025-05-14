@@ -17,23 +17,25 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Set up environment variables
-        run: |
-          echo "DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }}" >> .env
-          echo "DISCORD_CLIENT_ID=${{ secrets.DISCORD_CLIENT_ID }}" >> .env
-
-          echo "ADRIANNE_ID=${{ secrets.ADRIANNE_ID }}" >> .env
-          echo "MICO_ID=${{ secrets.MICO_ID }}" >> .env
-          echo "PAUL_ID=${{ secrets.PAUL_ID }}" >> .env
-          echo "NEO_ID=${{ secrets.NEO_ID }}" >> .env
-          echo "ICE_ID=${{ secrets.ICE_ID }}" >> .env
-          echo "ISAAK_ID=${{ secrets.ISAAK_ID }}" >> .env
-
-          echo "TRASH_SERVER_ID=${{ secrets.TRASH_SERVER_ID }}" >> .env
-          echo "TRASH_SERVER_GENERAL_CHANNEL_ID=${{ secrets.TRASH_SERVER_GENERAL_CHANNEL_ID }}" >> .env
-          echo "TRASH_SERVER_ECHO_CHANNEL_ID=${{ secrets.TRASH_SERVER_ECHO_CHANNEL_ID }}" >> .env
-
-          echo "PLAYGROUND_SERVER_ID=${{ secrets.PLAYGROUND_SERVER_ID }}" >> .env
-          echo "PLAYGROUND_SERVER_GENERAL_CHANNEL_ID=${{ secrets.PLAYGROUND_SERVER_GENERAL_CHANNEL_ID }}" >> .env
+        uses: SpicyPizza/create-envfile@v2.0
+        with:
+          env_key_DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+          env_key_DISCORD_CLIENT_ID: ${{ secrets.DISCORD_CLIENT_ID }}
+          env_key_ADRIANNE_ID: ${{ secrets.ADRIANNE_ID }}
+          env_key_MICO_ID: ${{ secrets.MICO_ID }}
+          env_key_PAUL_ID: ${{ secrets.PAUL_ID }}
+          env_key_NEO_ID: ${{ secrets.NEO_ID }}
+          env_key_ICE_ID: ${{ secrets.ICE_ID }}
+          env_key_ISAAK_ID: ${{ secrets.ISAAK_ID }}
+          env_key_TRASH_SERVER_ID: ${{ secrets.TRASH_SERVER_ID }}
+          env_key_TRASH_SERVER_GENERAL_CHANNEL_ID: ${{ secrets.TRASH_SERVER_GENERAL_CHANNEL_ID }}
+          env_key_TRASH_SERVER_ECHO_CHANNEL_ID: ${{ secrets.TRASH_SERVER_ECHO_CHANNEL_ID }}
+          env_key_PLAYGROUND_SERVER_ID: ${{ secrets.PLAYGROUND_SERVER_ID }}
+          env_key_PLAYGROUND_SERVER_GENERAL_CHANNEL_ID: ${{ secrets.PLAYGROUND_SERVER_GENERAL_CHANNEL_ID }}
+          directory: ./
+          file_name: .env
+          fail_on_empty: true
+          sort_keys: false
 
       - name: Install dependencies
         run: |

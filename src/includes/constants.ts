@@ -117,5 +117,3 @@ export const serverInfos: Record<ServerInfoKey, ServerInfo> = {
         general_channel_id: PLAYGROUND_SERVER_GENERAL_CHANNEL_ID,
     },
 };
-
-// Test change
