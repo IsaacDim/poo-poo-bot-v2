@@ -10,14 +10,36 @@ jobs:
         node-version: [20.x]
     steps:
       - uses: actions/checkout@v4
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+
+      - name: Set up environment variables
+        run: |
+          echo "DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }}" >> .env
+          echo "DISCORD_CLIENT_ID=${{ secrets.DISCORD_CLIENT_ID }}" >> .env
+
+          echo "ADRIANNE_ID=${{ secrets.ADRIANNE_ID }}" >> .env
+          echo "MICO_ID=${{ secrets.MICO_ID }}" >> .env
+          echo "PAUL_ID=${{ secrets.PAUL_ID }}" >> .env
+          echo "NEO_ID=${{ secrets.NEO_ID }}" >> .env
+          echo "ICE_ID=${{ secrets.ICE_ID }}" >> .env
+          echo "ISAAK_ID=${{ secrets.ISAAK_ID }}" >> .env
+
+          echo "TRASH_SERVER_ID=${{ secrets.TRASH_SERVER_ID }}" >> .env
+          echo "TRASH_SERVER_GENERAL_CHANNEL_ID=${{ secrets.TRASH_SERVER_GENERAL_CHANNEL_ID }}" >> .env
+          echo "TRASH_SERVER_ECHO_CHANNEL_ID=${{ secrets.TRASH_SERVER_ECHO_CHANNEL_ID }}" >> .env
+
+          echo "PLAYGROUND_SERVER_ID=${{ secrets.PLAYGROUND_SERVER_ID }}" >> .env
+          echo "PLAYGROUND_SERVER_GENERAL_CHANNEL_ID=${{ secrets.PLAYGROUND_SERVER_GENERAL_CHANNEL_ID }}" >> .env
+
       - name: Install dependencies
         run: |
           npm install
           npm run build
+
       - name: Start PM2
         run: |
           pm2 stop all
